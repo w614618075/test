@@ -1,6 +1,5 @@
 import React from 'react'
 export const List = ({ users, list }) => {
-    console.log(users, list);
     return <table border="1px solid #aaa" style={{margin:'0 auto',marginTop:30,width:240}}>
         <thead>
             <tr>

@@ -2,7 +2,7 @@ import React from 'react';
 import { useEffect, useState } from "react";
 import { SearchPanel } from "./search-panel";
 import { List } from "./list";
-import { cleanObject } from 'utils';
+import { cleanObject, useMount , useDebounce} from 'utils';
 import  qs from "qs"
 const apiUrl = process.env.REACT_APP_API_URL
 
@@ -12,42 +12,30 @@ export const ProjectListScreen = () => {
         personId: ''
     })
 
+    const debouncedParam = useDebounce (param,1000)
     const [users, setUsers] = useState([])
 
     const [list, setList] = useState([])
 
     useEffect(() => {
 
-        fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(param))}`).then(async response => {
-
+        fetch(`${apiUrl}/projects?${qs.stringify(cleanObject(debouncedParam))}`).then(async response => {
             if (response.ok) {
                 let data = response.json()
                 setList(await data) // 获取表格数据
             }
-            // console.log(list);
         })
 
-    }, [param])
+    }, [debouncedParam])
 
-    // useEffect(() => {
-    //         fetch(`${apiUrl}/projects`).then(async response => {
-    //             return response.json();
-    //         }).then(async response =>{
-    //             // console.log(response);
-    //             setList(await response) // 获取表格数据
-    //             console.log(list);
-    //         })
-    
-    // }, [])
-    
-    useEffect(()=>{
+    useMount(()=>{
         fetch(`${apiUrl}/users`).then(async response =>{
             if(response.ok){
                 let data = response.json()
                 setUsers(await data)
             }
         })
-    },[])
+    })
 
     return <div>
         <SearchPanel users={users} param={param} setParam={setParam} />
