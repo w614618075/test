@@ -15,6 +15,7 @@ export const cleanObject = (object:object) => {
         }
     })
     return result
+    // 0
 };
 
 export const useMount = (callback:()=> void) => {
