@@ -1,6 +1,18 @@
 import React from 'react'
-export const List = ({ users, list }) => {
-    return <table border="1px solid #aaa" style={{margin:'0 auto',marginTop:30,width:240}}>
+import { User } from './search-panel'
+interface Project {
+    id: string;
+    name: string;
+    personId: string;
+    pin: string;
+    organization: string;
+}
+interface ListProps {
+    list: Project[];
+    users: User[]
+}
+export const List = ({ users, list }:ListProps) => {
+    return <table  style={{ margin: '0 auto', marginTop: 30, width: 240, border:"1px solid #aaa" }}>
         <thead>
             <tr>
                 <th>名称</th>
