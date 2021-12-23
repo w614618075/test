@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-export const isFalsy = (value:unknown) => value === 0 ? false : !value //排除value为0而不传值的情况，value为0也是有效的
+export const isFalsy = (value: unknown) => value === 0 ? false : !value //排除value为0而不传值的情况，value为0也是有效的
 
 // 在一个函数里，改变传入的对象本身的不好的。
-export const cleanObject = (object:object) => {
+export const cleanObject = (object: object) => {
 
     const result = { ...object } // = Object.assign({}, object)
 
@@ -18,13 +18,13 @@ export const cleanObject = (object:object) => {
     // 0
 };
 
-export const useMount = (callback:()=> void) => {
+export const useMount = (callback: () => void) => {
     useEffect(() => {
         callback()
     }, [])
 }
 
-export const useDebounce = <V>(value:V, delay?: number) => {
+export const useDebounce = <V>(value: V, delay?: number) => {
     const [debouncedValue, setDebouncedValue] = useState(value)
 
     useEffect(() => {
@@ -37,16 +37,16 @@ export const useDebounce = <V>(value:V, delay?: number) => {
     return debouncedValue
 }
 
-export const useArray = <T>(initialArray:T[]) => {
-    const [value,setValue] = useState(initialArray)
+export const useArray = <T>(initialArray: T[]) => {
+    const [value, setValue] = useState(initialArray)
     return {
         value,
         setValue,
-        add:(item:T)=>setValue([...value, item]),
-        clear:()=>setValue([]),
-        removeIndex:(index:number)=> {
-            const copy=[...value]
-            copy.splice(index,1)
+        add: (item: T) => setValue([...value, item]),
+        clear: () => setValue([]),
+        removeIndex: (index: number) => {
+            const copy = [...value]
+            copy.splice(index, 1)
             setValue(copy)
         }
     }

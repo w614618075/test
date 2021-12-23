@@ -1,4 +1,4 @@
-import { useArray } from "../utils/index";
+import { useArray } from "../../utils/index";
 import React from "react";
 
 export const TsReactTest = () => {
@@ -15,7 +15,7 @@ export const TsReactTest = () => {
             <button onClick={()=>clear()}>clear</button>
             {
                 value.map((person,index)=>(
-                    <div>
+                    <div key={index}>
                         <span style={{color:"red"}}>{index}</span>
                         <span>{person.name}</span>
                         <span>{person.age}</span>
