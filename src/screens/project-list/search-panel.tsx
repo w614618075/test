@@ -2,11 +2,12 @@ import React from 'react'
 import { useEffect, useState } from 'react';
 
 export interface User {
-    id:string,
-    name:string,
-    email:string,
-    title:string,
-    organization:string
+    id: string,
+    name: string,
+    email: string,
+    title: string,
+    organization: string,
+    token: string,
 }
 interface SearchPanelPorps {
     users: User[],
