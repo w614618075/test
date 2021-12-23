@@ -4,11 +4,11 @@ import { useAuth } from 'context/auth-context';
 import { UnanthenticatedApp } from 'unauthenticated-app';
 import './App.css';
 function App() {
-  const {user}=useAuth()
+  const { user } = useAuth()
   return (
     <div className="App">
       {
-        user?<AuthenticatedApp/>:<UnanthenticatedApp/>
+        user ? <AuthenticatedApp /> : <UnanthenticatedApp />
       }
     </div>
   );
