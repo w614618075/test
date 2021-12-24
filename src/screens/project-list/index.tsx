@@ -5,9 +5,7 @@ import { List } from "./list";
 import { TsReactTest } from '../try-use/try-use-array'
 // import { LoginScreen } from './login'
 import { cleanObject, useMount, useDebounce } from '../../utils';
-import qs from "qs"
 import { useHttp } from 'utils/http';
-const apiUrl = process.env.REACT_APP_API_URL
 
 export const ProjectListScreen = () => {
     const [param, setParam] = useState({

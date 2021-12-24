@@ -1,7 +1,5 @@
 import { useAuth } from "context/auth-context"
-import { config } from "process"
 import qs from "qs"
-import { idText } from "typescript"
 import * as auth from '../auth-provider'
 const apiUrl = process.env.REACT_APP_API_URL
 
