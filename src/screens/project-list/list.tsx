@@ -1,9 +1,9 @@
 import { render } from '@testing-library/react'
-import { Table } from 'antd'
+import { Table, TableProps } from 'antd'
 import dayjs from 'dayjs'
 import React from 'react'
 import { User } from './search-panel'
-interface Project {
+export interface Project {
     id: string;
     name: string;
     personId: string;
@@ -11,12 +11,11 @@ interface Project {
     organization: string;
     created: number;
 }
-interface ListProps {
-    list: Project[];
+interface ListProps extends TableProps<Project> {
     users: User[]
 }
 
-export const List = ({ users, list }: ListProps) => {
+export const List = ({ users, ...props }: ListProps) => {
     const columns = [
         {
             title: '名称',
@@ -38,18 +37,17 @@ export const List = ({ users, list }: ListProps) => {
         },
         {
             title: '创建时间',
-            render(value:any, project:any){
-                console.log(value,project );
-                
-                return<span>
+            render(value: any, project: any) {
+
+                return <span>
                     {
-                        project.created ? dayjs(project.created).format('YYYY-MM-DD'):'无'
+                        project.created ? dayjs(project.created).format('YYYY-MM-DD') : '无'
                     }
                 </span>
             }
         },
     ]
-    return <Table pagination={false} dataSource={list} columns={columns} />
+    return <Table pagination={false} {...props} columns={columns} />
 
 
 }
