@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 export const isFalsy = (value: unknown) => value === 0 ? false : !value //排除value为0而不传值的情况，value为0也是有效的
 export const isVoid = (value: unknown) => value === undefined || value === null || value === ''
 
@@ -57,8 +57,9 @@ export const useArray = <T>(initialArray: T[]) => {
 
 // 动态切换文档标题
 export const useDocumentTitle = (title: string, keepOnUnmount: boolean = true) => {
-    const oldTitle = document.title
-
+    const oldTitle = useRef(document.title).current
+    // 页面加载时：旧 title 'React App'
+    // 加载后： 新title
     useEffect(() => {
         document.title = title
     }, [title])
@@ -66,9 +67,10 @@ export const useDocumentTitle = (title: string, keepOnUnmount: boolean = true) =
     useEffect(() => {
         return () => {
             if (!keepOnUnmount) {
+                // 如果不指定依赖，读到的就是旧title
                 document.title = oldTitle
             }
         }
-    },[])
+    }, [keepOnUnmount, oldTitle])
 }
 
