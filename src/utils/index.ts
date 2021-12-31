@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 export const isFalsy = (value: unknown) => value === 0 ? false : !value //排除value为0而不传值的情况，value为0也是有效的
-export const isVoid = (value:unknown) => value === undefined || value ===null ||value===''
+export const isVoid = (value: unknown) => value === undefined || value === null || value === ''
 
 // 在一个函数里，改变传入的对象本身的不好的。
-export const cleanObject = (object: {[key:string]:unknown}) => {
+export const cleanObject = (object: { [key: string]: unknown }) => {
 
     const result = { ...object } // = Object.assign({}, object)
 
@@ -54,3 +54,21 @@ export const useArray = <T>(initialArray: T[]) => {
         }
     }
 }
+
+// 动态切换文档标题
+export const useDocumentTitle = (title: string, keepOnUnmount: boolean = true) => {
+    const oldTitle = document.title
+
+    useEffect(() => {
+        document.title = title
+    }, [title])
+
+    useEffect(() => {
+        return () => {
+            if (!keepOnUnmount) {
+                document.title = oldTitle
+            }
+        }
+    },[])
+}
+
