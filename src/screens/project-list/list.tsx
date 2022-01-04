@@ -24,7 +24,7 @@ export const List = ({ users, ...props }: ListProps) => {
             title: '名称',
             sorter: (a: any, b: any) => a.name.localeCompare(b.name),
             render(value: any, project: any) {
-                return <Link to={String(project.id)}>{project.name}</Link>
+                return <Link to={`/projects/${String(project.id)}`}>{project.name}</Link>
             }
         },
         {

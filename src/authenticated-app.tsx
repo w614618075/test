@@ -6,9 +6,10 @@ import { ProjectListScreen } from "screens/project-list"
 import { Row } from 'components/lib'
 import { ReactComponent as SLogo } from 'assets/software-logo.svg'
 import { Button, Dropdown, Menu } from 'antd'
-import { Navigate, Route, Routes } from 'react-router'
+import { Route, Routes } from 'react-router'
 import {BrowserRouter as Router} from 'react-router-dom'
 import { ProjectScreen } from 'screens/peoject'
+import { resetRoute } from 'utils'
 export const AuthenticatedApp = () => {
     return <div>
         <PageHeaders />
@@ -16,8 +17,9 @@ export const AuthenticatedApp = () => {
             {/* <ProjectListScreen /> */}
             <Router>
                 <Routes>
-                    <Route path={'/projects'} element={<ProjectListScreen />} />
-                    <Route path={'/projects/:projectId/*'} element={<ProjectScreen />} />
+                    <Route path={'projects'} element={<ProjectListScreen />} />
+                    <Route path={'projects/:projectId/*'} element={<ProjectScreen />} />
+                    <Route index element={<ProjectListScreen />} />
                 </Routes>
             </Router>
             
@@ -32,7 +34,10 @@ const PageHeaders = () => {
 
     return <Header between={true}>
         <HeaderLeft gap={true} between={false}>
-            <SLogo width='18rem' color='rgb(38,132,255)' />
+            <Button type={'link'} onClick={resetRoute}>
+                <SLogo width='18rem' color='rgb(38,132,255)' />
+            </Button>
+            
             <h3>项目</h3>
             <h3>用户</h3>
         </HeaderLeft>
