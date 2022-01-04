@@ -2,7 +2,10 @@ import { render } from '@testing-library/react'
 import { Table, TableProps } from 'antd'
 import dayjs from 'dayjs'
 import React from 'react'
+import { Link } from 'react-router-dom' // react-router 和 react-router-dom 的关系，相当于 react 和 react-dom/react-native/...
 import { User } from './search-panel'
+
+// TODO 把所有的ID都改成number类型
 export interface Project {
     id: string;
     name: string;
@@ -19,8 +22,10 @@ export const List = ({ users, ...props }: ListProps) => {
     const columns = [
         {
             title: '名称',
-            dataIndex: 'name',
-            sorter: (a: any, b: any) => a.name.localeCompare(b.name)
+            sorter: (a: any, b: any) => a.name.localeCompare(b.name),
+            render(value: any, project: any) {
+                return <Link to={String(project.id)}>{project.name}</Link>
+            }
         },
         {
             title: '部门',
