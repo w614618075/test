@@ -52,7 +52,7 @@ export const List = ({ users, ...props }: ListProps) => {
             }
         },
     ]
-    return <Table pagination={false} {...props} columns={columns} />
+    return <Table pagination={false} {...props} columns={columns} rowKey={rowkey => rowkey.id} />
 
 
 }

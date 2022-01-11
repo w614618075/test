@@ -7,7 +7,7 @@ import { Row } from 'components/lib'
 import { ReactComponent as SLogo } from 'assets/software-logo.svg'
 import { Button, Dropdown, Menu } from 'antd'
 import { Route, Routes } from 'react-router'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 import { ProjectScreen } from 'screens/peoject'
 import { resetRoute } from 'utils'
 export const AuthenticatedApp = () => {
@@ -17,15 +17,12 @@ export const AuthenticatedApp = () => {
             {/* <ProjectListScreen /> */}
             <Router>
                 <Routes>
+                    <Route index element={<ProjectListScreen />} />
                     <Route path={'projects'} element={<ProjectListScreen />} />
                     <Route path={'projects/:projectId/*'} element={<ProjectScreen />} />
-                    <Route index element={<ProjectListScreen />} />
                 </Routes>
             </Router>
-            
         </Main>
-
-
     </div>
 }
 
@@ -37,7 +34,7 @@ const PageHeaders = () => {
             <Button type={'link'} onClick={resetRoute}>
                 <SLogo width='18rem' color='rgb(38,132,255)' />
             </Button>
-            
+
             <h3>项目</h3>
             <h3>用户</h3>
         </HeaderLeft>
