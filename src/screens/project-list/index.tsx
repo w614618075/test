@@ -9,19 +9,17 @@ import { useProjects } from 'utils/project';
 import { useUsers } from 'utils/user';
 import { Helmet } from 'react-helmet';
 import { useUrlQueryParam } from 'utils/url';
+import { useProjectsSearchParams } from './util';
 export const ProjectListScreen = () => {
 
+    useDocumentTitle("项目列表", false)
 
     // const [keys] = useState<('name'|'personId')[]>(['name','personId'])
 
     // 基本类型可以放到依赖里，组件状态可以放到依赖里，非组件状态的对象，绝不能放到依赖里
-    const [param, setParam] = useUrlQueryParam(['name', 'personId'])
-    // console.log(param,'param');
-
-    const debouncedParam = useDebounce(param, 200)
-    const { isLoading, error, data: list } = useProjects(debouncedParam)
+    const [param, setParam] = useProjectsSearchParams()
+    const { isLoading, error, data: list } = useProjects(useDebounce(param, 200))
     const { data: users } = useUsers()
-    useDocumentTitle("项目列表", false)
     console.log(useUrlQueryParam(['name']));
 
     return <Container>

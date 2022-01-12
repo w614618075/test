@@ -7,9 +7,9 @@ import { User } from './search-panel'
 
 // TODO 把所有的ID都改成number类型
 export interface Project {
-    id: string;
+    id: number;
     name: string;
-    personId: string;
+    personId: number;
     pin: string;
     organization: string;
     created: number;
